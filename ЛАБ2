@@ -1,0 +1,298 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("ТИПЫ ДАННЫХ, ЗАДАНИЕ1");
+            int a = -20;
+            float b = 2.4563f;
+            uint c = 56;
+            long d = 223456784567654;
+
+            Console.WriteLine("int=" + a);
+            Console.WriteLine("float=" + b);
+            Console.WriteLine(c);
+            Console.WriteLine(d);
+            Console.WriteLine("");
+            Console.WriteLine("ЯВНЫЕ И НЕЯВНЫЕ ТИПЫ, ЗАДАНИЕ2");
+            Console.WriteLine("");
+            Console.WriteLine("неявные преобразования");
+            int n1 = 123;
+            long n2;
+            n2 = n1;
+            Console.WriteLine(n2);
+
+            double n4;
+            long n3 = 2342432;
+            n4 = n3;
+            Console.WriteLine(n4);
+
+            float n5 = 23.342f;
+            double n6;
+            n6 = n5;
+            Console.WriteLine(n6);
+
+            ushort n7 = 25;
+            int n8;
+            n8 = n7;
+            Console.WriteLine(n8);
+
+            uint n9 = 567222;
+            ulong n10;
+            n10 = n9;
+            Console.WriteLine(n10);
+            Console.WriteLine("");
+            Console.WriteLine("явные преобразования");
+            double i1 = 12.23;
+            int i2;
+            i2 = (int)i1;
+            Console.WriteLine(i2);
+
+            decimal i3 = 3.23453543m;
+            int i4;
+            i4 = (int)i3;
+            Console.WriteLine(i4);
+
+            float i5 = 234.2334f;
+            ulong i6;
+            i6 = (ulong)i5;
+            Console.WriteLine(i6);
+            Console.WriteLine("");
+            Console.WriteLine("РАСПАКОВКА И УПАКОВКА, ЗАДАНИЕ3");
+
+            int val = 5;
+            object obj = val;
+            int QW = (int)obj;
+            Console.WriteLine(QW);
+            Console.WriteLine("");
+            Console.WriteLine("НЕЯВНО ТИПИЗРОВАННЫЕ ПЕРЕМЕННЫЕ, ЗАДАНИЕ4");
+
+            var q1 = 10;
+            Console.WriteLine(q1);
+            var q2 = "Hello World";
+            Console.WriteLine(q2);
+            Console.WriteLine("");
+            Console.WriteLine("Nullable переменная, ЗАДАНИЕ5");
+            Console.WriteLine("");
+            int? r1 = null;
+            int? r2 = null;
+            System.Console.Write(r1 == r2);
+            Console.WriteLine("");
+            int? r3 = null;
+            int? r4 = 20;
+            System.Console.Write(r3 == r4);
+
+            Console.WriteLine("");
+            Console.WriteLine("СТРОКИ");
+            Console.WriteLine("");
+            Console.WriteLine("СТРОКОВЫЕ ЛИТЕРАЛЫ, ЗАДАНИЕ2.1");
+            Console.WriteLine("");
+            string str1 = "hello";
+            string str2 = "hellooo";
+            int stroki = str1.CompareTo(str2);
+            Console.WriteLine("сравнение двух строк" + stroki);
+            if (stroki == -1)
+                Console.WriteLine("вторая строка больше первой");
+            else
+                Console.WriteLine("первая строка больше второй");
+            Console.WriteLine("");
+            Console.WriteLine("3 СТРОКИ, ЗАДАНИЕ2.1");
+            Console.WriteLine("");
+            string name = "Stive";
+            string date = "12";
+            string str = "Hello, " + name + ". Today is " + date + ".";
+            System.Console.WriteLine(str);
+            string sr1 = "How are you?";
+            string sr2 = null;
+            Console.WriteLine(sr1);
+            string text = "i am ok thank";
+            string[] words = text.Split(new char[] { ' ' });
+            foreach (string s in words)
+            {
+                Console.WriteLine(s);
+            }
+            Console.WriteLine("");
+            Console.WriteLine("РАБОТА СО СТРОКАМИ NULL, ЗАДАНИЕ2.2");
+            Console.WriteLine("");
+
+            string s1 = null;
+            Console.WriteLine("Значение строки-'{0}'", s1);
+
+            string s2 = "";
+            Console.WriteLine("Значение строки-'{1}'", s2, s2.Length);
+            Console.WriteLine("");
+            Console.WriteLine("РАБОТА С STRINGBUILDER , ЗАДАНИЕ2.3");
+            Console.WriteLine("");
+            StringBuilder sb = new StringBuilder("Солнечный день");
+            Console.WriteLine("Длина строки: {0}", sb.Length);
+            Console.WriteLine("Емкость строки: {0}", sb.Capacity);
+            sb.Append(" сегодня");
+            sb.Insert(0, "Снова ");
+            Console.WriteLine(sb);
+            Console.WriteLine("");
+            Console.WriteLine("МАССИВЫ");
+            Console.WriteLine("ДВУМЕРНЫЙ МАССИВ , ЗАДАНИЕ3.1");
+            Console.WriteLine("");
+            int[,] A = new int[4, 5];
+            Random rand = new Random();
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    A[i, j] = rand.Next(1, 15);
+                    Console.Write("{0}\t", A[i, j]);
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine(" ");
+            Console.WriteLine("ОДНОМЕРНЫЙ МАССИВ СТРОК, ЗАДАНИЕ3.2");
+            Console.WriteLine(" ");
+
+            string[] num = new string[10] { "one", "two", "free", "four", "five", "six", "seven", "eight", "nine", "ten" };
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write("\t{0}", num[i]);
+
+            }
+            Console.WriteLine();
+            Console.WriteLine("Длина массива: {0}", num.Length);
+            Console.WriteLine("Введите интекс элемента, который нужно заменить: ");
+            int numm = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите замену: ");
+            string men = Console.ReadLine();
+            num[numm] = men;
+            Console.WriteLine("Новый массив: ");
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write("\t{0}", num[i]);
+
+            }
+            Console.WriteLine(" ");
+            Console.WriteLine("СТУПЕНЧАЫЙ МАССИВ, ЗАДАНИЕ3.3");
+            Console.WriteLine(" ");
+            int z = 0;
+            // Объявляем ступенчаты массив
+            int[][] myArr = new int[4][];
+            myArr[0] = new int[2];
+            myArr[1] = new int[3];
+            myArr[2] = new int[4];
+            myArr[3] = new int[5];
+
+            // Инициализируем ступенчатый массив
+            for (z = 0; z < 2; z++)
+            {
+                myArr[0][z] = z;
+                Console.Write("{0}\t", myArr[0][z]);
+            }
+
+            Console.WriteLine();
+            for (z = 0; z < 3; z++)
+            {
+                myArr[1][z] = z;
+                Console.Write("{0}\t", myArr[1][z]);
+            }
+
+            Console.WriteLine();
+            for (z = 0; z < 4; z++)
+            {
+                myArr[2][z] = z;
+                Console.Write("{0}\t", myArr[2][z]);
+            }
+
+            Console.WriteLine();
+            for (z = 0; z < 5; z++)
+            {
+                myArr[3][z] = z;
+                Console.Write("{0}\t", myArr[3][z]);
+
+            }
+            Console.WriteLine(" ");
+            Console.WriteLine("ХРАНЕНИЕ МАССИВА, ЗАДАНИЕ3.4");
+            Console.WriteLine(" ");
+
+            var mass = new[] { 1, 2, 3 };                     // неявная типизация для хранения массива
+            foreach (var f1 in mass)
+            {
+                Console.Write(i1);
+            }
+            Console.WriteLine();
+
+            var masstr = new[] { "1a", "2b", "3c" };                     // неявная типизация для хранения строки
+            foreach (var f1 in masstr)
+            {
+                Console.Write(i1);
+            }
+            Console.WriteLine();
+
+            Console.WriteLine(" ");
+            Console.WriteLine("КОРТЕЖ, ЗАДАНИЕ4.1.2");
+            Console.WriteLine(" ");
+
+            (int a1, string a2, char a3, string a4, ulong a5) name= (17, "avg", 'o', "ops", 15);
+
+
+            Console.WriteLine(" ");
+            Console.WriteLine("КОРТЕЖ, ЗАДАНИЕ4.3");
+            Console.WriteLine(" "); 
+
+              Console.WriteLine(name.GetType().Name);
+            Console.WriteLine($" {name}");                   // вывод кортежа                   
+            Console.WriteLine(name.d1 + " " + name.d3 +  " " + name.d4);
+            
+            Console.WriteLine(" ");
+            Console.WriteLine("КОРТЕЖ, ЗАДАНИЕ4.4");
+            Console.WriteLine(" "); 
+             
+            var (first, second, thrird, four, five ) = name;                                                 
+            Console.WriteLine(second);
+            
+            Console.WriteLine(" ");
+            Console.WriteLine("КОРТЕЖ, ЗАДАНИЕ4.5");
+            Console.WriteLine(" "); 
+
+            var t1 = ValueTuple.Create(17, "avg");
+            var t2 = ValueTuple.Create(17, "avg");
+            Console.WriteLine(t1.Equals(t2));
+
+            Tuple<double,double,double, char> local_function(double []massiv, string temp)
+            {
+                double min, max;
+                min = max = massiv[0];
+                
+                for( int step=1; step < massiv.Length; step++)
+                {
+                    if ( massiv[step] < min )
+                    {
+                        min = massiv[step];
+           
+                    }
+                    else if ( massiv[step]>max)
+                    {
+                        max = massiv[step];
+                    }
+                }
+                double sum = min + max;
+                char ch =( (char)temp[0]);
+                return Tuple.Create<double, double, double, char>(max, min, sum, ch);
+            }
+            double[] elementi = { 1, 5, 2, 4, 0, 3, 7 };
+            var new_tuple = local_function(elementi, "lyuba");
+            Console.WriteLine(new_tuple.Item3.ToString());
+           
+           Console.ReadLine();
+
+
+
+
+        }
+    }
+}
+
+
