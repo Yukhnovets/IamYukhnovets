@@ -1,0 +1,312 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lb3
+{//23.Что такое partial класс и какие его преимущества? 
+    //Частичные классы (partial class) представляют возможность разделить функционал одного класса на несколько файлов. 
+    partial class Abitura
+    {
+        //6.Какие ключевые слова можно использовать при определении класса? 
+        private int[] array;
+        private int error;
+        private int length;
+        private readonly int ID;
+        private static int raz;
+        // поле класса конст
+   
+        public void GetID()
+        {
+            int id1;
+            id1 = raz * 34;
+            Console.WriteLine("ID  " + id1);
+        }
+    
+        private Abitura() { } 
+        public Abitura(int size)
+        {
+            raz++;
+            array = new int[size];
+            length = size;
+        }
+
+
+
+        public int this[int i] 
+        {
+            get
+            {
+                if (i >= 0 && i < length) return array[i];
+                else { error = 1; return 0; }
+            }
+            set
+            {
+                if (i >= 0 && i < length && value >= 0 && value <= 100) array[i] = value;
+                else error = 0;
+            }
+        }
+
+     
+
+        private Abitura(int h, int h1)
+        {
+            array = new int[h1];
+            raz++;
+            length = h1;
+
+        }
+        //чтение и полуечние закрытых полей
+
+
+     //работа с get и ref
+        public int Length
+        {
+            get
+            {
+
+                return length;
+            }
+            set
+            {
+                length = value; 
+            }
+        }
+        public int Raz
+        {
+            get
+            {
+
+                return raz;
+            }
+            set
+            {
+                raz = value;
+            }
+        }
+        public int Error
+        {
+            get
+            {
+                return error;
+            }
+        }
+        public int Id
+        {
+            get
+            {
+                return ID;
+            }
+        }
+       static Abitura() 
+        {
+        }
+        //информация о классе 
+        public void InfKlt()
+        {
+            Console.WriteLine("Количество объектов в классе " +  raz);
+        }
+    
+        //15.Зачем и как используются ref и out параметры функции? 
+        // ref/когда нужно позволить методу оперировать(и обычно изменять зна­чения) различными элементами данных, объявленных в вызывающем коде
+        // Методы, которым при   определении указано принимать выходные  параметрыдолжны перед выходом обязательно присваивать им соответствующие значения
+        static void OandR(out int z, out string d)
+        {
+            z = 44;
+            d = "Summa";
+        }
+       // 25.Для чего делают статические классы?
+        public static void Name(ref string str1, ref string str2)
+        {
+            string name = str1;
+            str1 = str2;
+            str2 = name;
+        }
+
+        static void Ball()
+        {
+            int[] BMasha = { 2, 6, 3, 7, 8, 9, 10 };
+            foreach (int b1 in BMasha)
+                Console.WriteLine(b1);
+            Console.WriteLine("\\\\\\");
+            int[] BSasha = { 5, 3, 7, 7, 8, 10, 9 };
+            foreach (int b2 in BSasha)
+                Console.WriteLine(b2);
+            Console.WriteLine("\\\\\\");
+        }
+
+    
+
+
+        static void Main(string[] args)
+        {
+            int n = 5;
+            int m = 5;
+            char Maria = 'M';
+            char Sasha = 'S';
+            int sum = 0;
+            int sum1 = 0;
+            Abitura ab = new Abitura(n);            
+            Abitura ab1 = new Abitura(m);
+
+            Console.WriteLine("БАЛЛЫ АБИТУРИЕНТОВ");
+            Ball();
+            int[] BMasha = { 2, 6, 3, 7, 8, 9, 10 };
+            foreach (int b1 in BMasha)
+                sum += (b1) / 7;
+            Console.WriteLine("Сумма значений первого абитуриента = " + sum);
+            Console.WriteLine(" ");
+            int[] BSasha = { 5, 3, 7, 7, 8, 10, 9 };
+            foreach (int b2 in BSasha)
+                sum1 += (b2) / 7;
+            Console.WriteLine("Сумма значений второго абитуриента = " + sum1);
+            Console.WriteLine(" ");
+
+            ////////////////////////
+            int max = -99;
+
+            foreach (int elem in BMasha)
+            {
+                if (max < elem) max = elem;
+            }
+            foreach (int elem in BSasha)
+            {
+                if (max < elem) max = elem;
+            }
+            Console.WriteLine ("Максимальная оценка " + max);
+
+
+            int min1 = 99;
+
+            foreach (int elem in BMasha)
+            {
+                if (min1 > elem) min1 = elem;
+            }
+
+            foreach (int elem in BSasha)
+            {
+                if (min1 > elem) min1 = elem;
+            }
+            Console.WriteLine("Минимальная оценка" + min1);
+            ///////////////////
+
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    if (ab[i] < 5)
+                    {
+                        Console.WriteLine("НЕудовлетворительные оценки у студента " + Maria + " - " + i);
+                        i++;
+                    }
+                }
+                for (int i1 = 0; i1 < m; i1++)
+                {
+                    if (ab[i1] < 5)
+                    {
+                        Console.WriteLine("НЕудовлетворительные оценки у студента " + Sasha + " - " + i1);
+                        i1++;
+
+                    }
+                }
+            }
+            Console.WriteLine(" ");
+
+
+            Console.WriteLine("Введите необходимый средний балл ");
+            int srB = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine(" ");
+
+            Console.WriteLine("OUT AND REF");
+            int z; string d;
+            OandR(out z, out d);
+            Console.WriteLine("Int : {0}", z);
+            Console.WriteLine("String : {0}", d);
+            string str1 = "Masha";
+            string str2 = "Sasha";
+            if (sum > sum1)
+            {
+                Console.WriteLine("Средний балл " + " " + str1 + "выше чем у " + " " + str2);
+            }
+            else
+            {
+                Name(ref str1, ref str2);
+                Console.WriteLine("Средний балл " + " " + str1 + "выше чем у " + " " + str2);
+            }
+
+ 
+
+            Console.WriteLine(" ");
+            ab1.GetID(); Console.WriteLine(" ");
+            ab1.InfKlt();            Console.WriteLine(" ");
+            Console.WriteLine(ab1.ID);          Console.WriteLine(" ");
+            Console.WriteLine(ab1.error);            Console.WriteLine(" ");
+            Console.WriteLine(ab1.Length);     Console.WriteLine(" ");
+            Console.WriteLine(ab1.Equals(ab));            Console.WriteLine(" ");
+            Console.WriteLine(ab1.GetHashCode());         Console.WriteLine(" ");
+            InObj(ab1);          Console.WriteLine(" ");
+            Console.WriteLine(ab1.GetType());           Console.WriteLine(" ");
+
+
+            var inf = new { length = 1267898765345, thisarr = new int[5] { 5, 6, 7, 9, 4 }, id = 567 };
+            Console.WriteLine(inf.length);
+            Console.WriteLine(inf.thisarr[0]);
+            Console.WriteLine(inf.id);
+            Console.ReadLine();
+        }
+    }
+    public partial class Abitura
+    {
+        public int d = 3;
+        public int c = 4;
+        //стандартная реализация TOSRT  возвращает  полностью заданное имя текущего типа
+        public static void InObj(Abitura obj)
+        {
+           
+            Console.WriteLine("Строка " + obj.ToString());
+        }
+        public override int GetHashCode()
+        {     
+            Console.WriteLine("Хэш-код "); return d.GetHashCode() * 13 + c.GetHashCode();
+        }
+      /*  public override bool Equals(object obj)
+        {
+            return Equals(obj as Abitura);
+        }
+
+        public bool Equals(Abitura that)
+        {
+            if (that == null)
+                return false;
+            return this.d == that.d && this.c == that.c;
+        }
+        */
+        //проверка того, указывают ли две переменных на один и тот же объект в памяти
+        /* public virtual Boolean Equals(Abitura obj)
+         {
+             bool a = false;
+             if (obj == null)
+                 return false;
+             if (this.GetType() != obj.GetType())
+                 return false;
+             if (obj.Length == this.Length)
+             {
+                 for (int i = 0; i < Length; i++)
+                 {
+                     if (arr[i] == obj.arr[i])
+                     {
+                         if (i == Length - 1)
+                             a = true;
+                     }
+                     else { a = false; break; }
+                 }
+             }
+             else { a = false; }
+             return a;
+         }
+     */
+
+
+    }
+}
